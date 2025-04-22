@@ -2,16 +2,12 @@ local matLight 		= Material( "sprites/light_ignorez" )
 
 function EFFECT:Init( data )
 
- 	local size = 600
+ 	local size = 1000
  	self.Entity:SetCollisionBounds( Vector( -size,-size,-size ), Vector( size,size,size ) )
-
  	self.Pos 	= data:GetOrigin()
-
- 	self.Alpha = 1
-
+ 	self.Alpha = 1000
 	self.Up=true
-
-	self.Number=CurTime()+math.random(100,200)
+	self.Number=CurTime()+math.random(25,100)
 	if (math.ceil(data:GetMagnitude())==0) then
 		self.Atlantis = true;
 	end
@@ -23,17 +19,17 @@ function EFFECT:Think()
  	local dlight = DynamicLight(self.Number)
  	if ( dlight ) then
  		dlight.Pos = self:GetPos()
- 		dlight.r = 250
- 		dlight.g = 211
- 		dlight.b = 169
- 		dlight.Brightness = 10
- 		dlight.Decay = 5
+ 		dlight.r = 255
+ 		dlight.g = 255
+ 		dlight.b = 255
+ 		dlight.Brightness = 2
+ 		dlight.Decay = 1
  		if (self.Atlantis) then
- 			dlight.Size = 70
+ 			dlight.Size = 1900
  		else
- 			dlight.Size = 150
+ 			dlight.Size = 1900
  		end
- 		dlight.DieTime = CurTime() + 1
+ 		dlight.DieTime = CurTime() + 0.01
  	end
 
  	--local speed = FrameTime()
@@ -51,5 +47,5 @@ end
 
 function EFFECT:Render()
 	render.SetMaterial( matLight )
-	render.DrawSprite(self.Pos, 600, 600, Color(244,247,172,math.Clamp(self.Alpha,0,255)))
+	render.DrawSprite(self.Pos, 900, 900, Color(255,255,255,math.Clamp(self.Alpha,0,255)))
 end
